@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SiteCraft | Web Design Agency</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#0f172a;
+  color:white;
+  text-align:center;
+}
+
+/* NAV */
+nav {
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  background:#111827;
+}
+
+nav a {
+  color:white;
+  text-decoration:none;
+  margin:0 10px;
+}
+
+/* HERO */
+.hero {
+  padding:70px 20px;
+}
+
+.hero h1 {
+  color:#00ffcc;
+}
+
+/* SECTIONS */
+.section {
+  padding:40px 20px;
+}
+
+/* GRID */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  padding:20px;
+}
+
+/* CARD */
+.card {
+  background:rgba(255,255,255,0.08);
+  padding:20px;
+  border-radius:10px;
+}
+
+/* FORM */
+input, textarea, select {
+  width:90%;
+  padding:10px;
+  margin:8px 0;
+  border:none;
+  border-radius:6px;
+}
+
+/* BUTTON */
+button {
+  padding:12px;
+  border:none;
+  border-radius:6px;
+  background:#00ffcc;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* WHATSAPP */
+.whatsapp {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:60px;
+  height:60px;
+  background:#25D366;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  color:white;
+  text-decoration:none;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* ADMIN */
+#adminPanel {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#0b1220;
+  overflow:auto;
+  padding:20px;
+}
+
+.adminBox {
+  background:rgba(255,255,255,0.08);
+  padding:15px;
+  margin:10px 0;
+  border-radius:10px;
+}
+
+/* CHAT */
+#chatBox {
+  max-width:650px;
+  margin:auto;
+  background: rgba(255,255,255,0.05);
+  border-radius:15px;
+  padding:20px;
+}
+
+#messages {
+  height:300px;
+  overflow-y:auto;
+  background: rgba(0,0,0,0.3);
+  padding:15px;
+  border-radius:10px;
+  text-align:left;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div><b>🌐 SiteCraft</b></div>
+  <div>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <a href="#ai">AI</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#order">Order</a>
+    <a onclick="openAdmin()" style="cursor:pointer;">Admin</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>SITECRAFT</h1>
+  <h1>We Build Websites That Grow Businesses 🚀</h1>
+  <p>Modern web design for your business success</p>
+</div>
+
+<!-- SERVICES -->
+<div class="section" id="services">
+<h2>Services</h2>
+<div class="grid">
+  <div class="card">🌐 Web Development</div>
+  <div class="card">🎨 UI/UX Design</div>
+  <div class="card">⚡ Fast Landing Pages</div>
+  <div class="card">📱 Mobile Friendly</div>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+<h2>📞 Contact & Email</h2>
+
+<p>
+📧 <a href="mailto:anjolaoluwaaiyeola@gmail.com" style="color:#00ffcc;">
+anjolaoluwaaiyeola@gmail.com
+</a>
+</p>
+
+<p>
+💬 <a href="https://wa.me/2349011995225" style="color:#00ffcc;">
+Chat on WhatsApp
+</a>
+</p>
+</div>
+
+<!-- AI CHAT -->
+<div class="section" id="ai">
+<h2>🤖 AI Chat</h2>
+
+<div id="chatBox">
+  <div id="messages"></div>
+  <input id="userInput" placeholder="Ask AI...">
+  <button onclick="sendMessage()">Send</button>
+</div>
+</div>
+
+<!-- PRICING -->
+<div class="section" id="pricing">
+<h2>💰 Pricing (Naira)</h2>
+
+<div class="grid">
+  <div class="card">Starter<br>₦15,000</div>
+  <div class="card">Business<br>₦37,500</div>
+  <div class="card">Premium<br>₦75,000</div>
+</div>
+</div> 
+
+<!-- ORDER -->
+<div class="section" id="order">
+<h2>📩 Order Website</h2>
+
+<form onsubmit="sendOrder(event)">
+  <input id="name" placeholder="Your Name" required>
+
+  <select id="plan" required>
+    <option>Starter</option>
+    <option>Business</option>
+    <option>Premium</option>
+  </select>
+
+  <textarea id="details" placeholder="Project Details"></textarea>
+
+  <button type="submit">Send Order</button>
+</form>
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/2349011995225">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+  <h2>📊 Admin Dashboard</h2>
+  <button onclick="closeAdmin()">Close</button>
+  <div id="orders"></div>
+</div>
+
+<script>
+
+/* SAVE ORDER */
+function sendOrder(e){
+  e.preventDefault();
+
+  let name = document.getElementById("name").value;
+  let plan = document.getElementById("plan").value;
+  let details = document.getElementById("details").value;
+
+  let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+  orders.push({name, plan, details});
+  localStorage.setItem("orders", JSON.stringify(orders));
+
+  window.open(`https://wa.me/2349011995225?text=New Order%0AName:${name}%0APlan:${plan}%0ADetails:${details}`);
+
+  alert("Order sent 🚀");
+}
+
+
+/* AI WITH TYPING EFFECT */
+function addMessage(sender, text){
+  let box = document.getElementById("messages");
+  box.innerHTML += `<p><b>${sender}:</b> ${text}</p>`;
+  box.scrollTop = box.scrollHeight;
+}
+
+async function sendMessage(){
+
+  let input = document.getElementById("userInput");
+  let text = input.value.trim();
+  if(!text) return;
+
+  addMessage("You", text);
+  input.value = "";
+
+  let typing = document.createElement("p");
+  typing.innerHTML = "<b>AI:</b> typing...";
+  document.getElementById("messages").appendChild(typing);
+
+  let reply = "";
+
+  try {
+    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":"Bearer YOUR_API_KEY"
+      },
+      body:JSON.stringify({
+        model:"gpt-4o-mini",
+        messages:[{role:"user", content:text}]
+      })
+    });
+
+    const data = await res.json();
+    reply = data.choices[0].message.content;
+
+  } catch(e) {
+    if(text.includes("price")) reply = "Prices start from ₦15,000 💰";
+    else if(text.includes("website")) reply = "We build websites 🚀";
+    else reply = "I can help with websites 🤖";
+  }
+
+  typing.innerHTML = "<b>AI:</b> ";
+
+  let i = 0;
+  let interval = setInterval(()=>{
+    typing.innerHTML = "<b>AI:</b> " + reply.slice(0,i);
+    i++;
+    if(i > reply.length) clearInterval(interval);
+  },25);
+}
+
+
+/* ADMIN DASHBOARD */
+function openAdmin(){
+  let pass = prompt("Enter Admin Password:");
+
+  if(pass !== "admin123"){
+    alert("Wrong password ❌");
+    return;
+  }
+
+  let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+  let html = "";
+
+  orders.forEach((o,i)=>{
+    html += `
+      <div class="adminBox">
+        <b>${i+1}. ${o.name}</b><br>
+        Plan: ${o.plan}<br>
+        Details: ${o.details}
+      </div>
+    `;
+  });
+
+  document.getElementById("orders").innerHTML = html;
+  document.getElementById("adminPanel").style.display = "block";
+}
+
+function closeAdmin(){
+  document.getElementById("adminPanel").style.display = "none";
+}
+</script>
+
+</body>
+</html> 
